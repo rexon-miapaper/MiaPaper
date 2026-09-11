@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MiaPaper</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Patrick+Hand&display=swap');
+
+:root{
+  --pink:#ff7eb6;
+  --pink2:#ffd6e8;
+  --purple:#8d62d3;
+  --lav:#efe6ff;
+  --yellow:#ffd86b;
+  --blue:#83d8ff;
+  --mint:#aeeccf;
+  --ink:#2d2840;
+  --paper:#fffdf8;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  color:var(--ink);
+  background:
+    radial-gradient(circle at 10% 10%, rgba(255,126,182,.10) 0 90px, transparent 91px),
+    radial-gradient(circle at 90% 20%, rgba(131,216,255,.13) 0 120px, transparent 121px),
+    #fff9fc;
+  font-family:'Fredoka', Arial, sans-serif;
+}
+
+.top-strip{
+  text-align:center;
+  padding:8px 12px;
+  font-size:.92rem;
+  font-weight:600;
+  background:var(--yellow);
+  border-bottom:2px solid var(--ink);
+}
+
+.hero{
+  position:relative;
+  overflow:hidden;
+  min-height:420px;
+  display:grid;
+  place-items:center;
+  text-align:center;
+  padding:52px 20px 110px;
+  background:
+    linear-gradient(135deg, rgba(255,214,232,.96), rgba(239,230,255,.96) 55%, rgba(210,244,255,.96));
+  border-bottom:4px solid var(--ink);
+}
+
+.hero:before,.hero:after{
+  content:"";
+  position:absolute;
+  border:3px solid var(--ink);
+  background:white;
+  transform:rotate(-8deg);
+}
+.hero:before{
+  width:160px;height:110px;left:-45px;top:40px;border-radius:24px;
+}
+.hero:after{
+  width:150px;height:100px;right:-35px;bottom:48px;border-radius:50%;
+}
+
+.doodle{
+  position:absolute;
+  font-size:2rem;
+  filter:drop-shadow(2px 2px 0 white);
+}
+.d1{left:8%;top:17%}.d2{right:8%;top:16%}.d3{left:13%;bottom:22%}.d4{right:15%;bottom:20%}
+
+.logo{
+  position:relative;
+  z-index:2;
+}
+.logo .mini{
+  font-family:'Patrick Hand',cursive;
+  font-size:1.25rem;
+  margin-bottom:4px;
+}
+.logo h1{
+  margin:0;
+  font-size:clamp(4rem,13vw,8rem);
+  line-height:.88;
+  letter-spacing:-5px;
+  color:var(--pink);
+  text-shadow:
+    3px 3px 0 white,
+    6px 6px 0 var(--ink);
+}
+.logo h1 span{color:var(--purple)}
+.logo .tagline{
+  display:inline-block;
+  margin-top:25px;
+  padding:10px 20px;
+  border:3px solid var(--ink);
+  border-radius:999px;
+  background:white;
+  box-shadow:5px 5px 0 var(--pink);
+  font-family:'Patrick Hand',cursive;
+  font-size:1.35rem;
+}
+
+nav{
+  position:absolute;
+  z-index:5;
+  left:50%;
+  bottom:24px;
+  transform:translateX(-50%);
+  width:min(980px,94%);
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+}
+nav a{
+  text-decoration:none;
+  color:var(--ink);
+  font-weight:700;
+  padding:10px 15px;
+  border:2px solid var(--ink);
+  border-radius:14px;
+  background:white;
+  box-shadow:3px 3px 0 var(--ink);
+}
+nav a:nth-child(2){background:var(--pink2)}
+nav a:nth-child(3){background:var(--lav)}
+nav a:nth-child(4){background:var(--mint)}
+nav a:nth-child(5){background:#fff1ad}
+
+.container{
+  width:min(1040px,92%);
+  margin:34px auto 60px;
+}
+
+.issue-line{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  align-items:center;
+  padding:10px 0 18px;
+  border-bottom:3px double var(--ink);
+  font-family:'Patrick Hand',cursive;
+  font-size:1.05rem;
+}
+
+.front-grid{
+  display:grid;
+  grid-template-columns:1.35fr .65fr;
+  gap:22px;
+  margin-top:24px;
+}
+@media(max-width:760px){.front-grid{grid-template-columns:1fr}}
+
+.card{
+  background:var(--paper);
+  border:3px solid var(--ink);
+  border-radius:18px;
+  padding:22px;
+  box-shadow:7px 7px 0 rgba(45,40,64,.16);
+  margin-bottom:24px;
+}
+.card h2{
+  margin:0 0 10px;
+  font-size:2rem;
+  line-height:1;
+}
+.card p{line-height:1.6}
+
+.kicker{
+  display:inline-block;
+  padding:5px 10px;
+  background:var(--yellow);
+  border:2px solid var(--ink);
+  border-radius:999px;
+  font-size:.78rem;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.06em;
+  margin-bottom:12px;
+}
+
+.lead{
+  background:linear-gradient(135deg,#fff,#fff0f7);
+}
+.story-title{
+  font-size:clamp(2rem,6vw,4.1rem)!important;
+  letter-spacing:-2px;
+  margin:2px 0 12px!important;
+}
+.fake-photo{
+  min-height:260px;
+  border:3px dashed var(--purple);
+  border-radius:16px;
+  display:grid;
+  place-items:center;
+  text-align:center;
+  padding:20px;
+  background:
+    linear-gradient(135deg,rgba(255,126,182,.18),rgba(131,216,255,.18)),
+    repeating-linear-gradient(45deg,transparent 0 14px,rgba(255,255,255,.5) 14px 28px);
+  font-family:'Patrick Hand',cursive;
+  font-size:1.45rem;
+}
+
+.side-note{
+  background:#fff5b8;
+  transform:rotate(1deg);
+}
+.side-note ul{padding-left:20px;line-height:1.8}
+
+.section-title{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin:44px 0 18px;
+}
+.section-title h2{
+  margin:0;
+  font-size:2.2rem;
+}
+.section-title:after{
+  content:"";
+  height:3px;
+  background:var(--ink);
+  flex:1;
+}
+
+.cards3{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+@media(max-width:800px){.cards3{grid-template-columns:1fr}}
+
+.mini-card{
+  border:3px solid var(--ink);
+  border-radius:18px;
+  padding:18px;
+  background:white;
+  box-shadow:5px 5px 0 rgba(45,40,64,.14);
+}
+.mini-card:nth-child(1){background:#fff0f6}
+.mini-card:nth-child(2){background:#f2edff}
+.mini-card:nth-child(3){background:#ecfff7}
+
+.icon{
+  width:58px;height:58px;
+  display:grid;place-items:center;
+  border:2px solid var(--ink);
+  border-radius:50%;
+  font-size:1.8rem;
+  background:white;
+  margin-bottom:12px;
+}
+
+.art-wall{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+}
+@media(max-width:720px){.art-wall{grid-template-columns:1fr}}
+.art-box{
+  min-height:180px;
+  display:grid;
+  place-items:center;
+  text-align:center;
+  border:3px dashed var(--ink);
+  border-radius:16px;
+  font-family:'Patrick Hand',cursive;
+  font-size:1.2rem;
+}
+.art-box:nth-child(1){background:#ffe2ef}
+.art-box:nth-child(2){background:#eee6ff}
+.art-box:nth-child(3){background:#e3f7ff}
+
+.quiz{
+  background:linear-gradient(135deg,#fff9cf,#ffe0ef);
+}
+.quiz-options{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+@media(max-width:520px){.quiz-options{grid-template-columns:1fr}}
+.quiz button{
+  font:inherit;
+  font-weight:700;
+  border:2px solid var(--ink);
+  border-radius:14px;
+  padding:14px;
+  background:white;
+  cursor:pointer;
+  box-shadow:3px 3px 0 var(--ink);
+}
+.quiz button:active{
+  transform:translate(3px,3px);
+  box-shadow:none;
+}
+#answer{
+  min-height:30px;
+  margin:16px 0 0;
+  font-weight:700;
+  font-size:1.1rem;
+}
+
+footer{
+  padding:28px 20px 45px;
+  text-align:center;
+  background:var(--ink);
+  color:white;
+}
+footer strong{color:var(--pink2)}
+.small{font-size:.85rem;opacity:.85}
+</style>
+</head>
+<body>
+<div class="top-strip">MiaPaper • A little newspaper for big ideas</div>
+
+<header class="hero">
+  <div class="doodle d1">★</div>
+  <div class="doodle d2">♡</div>
+  <div class="doodle d3">✎</div>
+  <div class="doodle d4">☀</div>
+
+  <div class="logo">
+    <div class="mini">Welcome to</div>
+    <h1>Mia<span>Paper</span></h1>
+    <div class="tagline">Stories • Art • Pets • Games • Fun</div>
+  </div>
+
+  <nav>
+    <a href="#top-story">Top Story</a>
+    <a href="#stories">Stories</a>
+    <a href="#art">Mia's Art</a>
+    <a href="#pets">Nugget's Corner</a>
+    <a href="#games">Fun & Games</a>
+  </nav>
+</header>
+
+<main class="container">
+  <div class="issue-line">
+    <span>MiaPaper — Issue No. 1</span>
+    <span>Made by Mia</span>
+  </div>
+
+  <div class="front-grid">
+    <article class="card lead" id="top-story">
+      <span class="kicker">Today's Top Story</span>
+      <h2 class="story-title">Welcome to MiaPaper!</h2>
+      <p>This is Mia's own little newspaper on the internet — a place for stories, drawings, funny moments, pets, games, and anything creative.</p>
+      <div class="fake-photo">Add Mia's featured drawing, photo, or story picture here</div>
+    </article>
+
+    <aside class="card side-note">
+      <span class="kicker">Editor's Note</span>
+      <h2>Hi, I'm Mia!</h2>
+      <p>Every issue of MiaPaper can have something new.</p>
+      <ul>
+        <li>A new story</li>
+        <li>A drawing of the week</li>
+        <li>A Nugget adventure</li>
+        <li>A quiz or puzzle</li>
+        <li>A funny family moment</li>
+      </ul>
+    </aside>
+  </div>
+
+  <div class="section-title" id="stories"><h2>Latest Stories</h2></div>
+  <div class="cards3">
+    <div class="mini-card">
+      <div class="icon">✏</div>
+      <h3>My First MiaPaper Story</h3>
+      <p>Mia can replace this text with her first article or short story.</p>
+    </div>
+    <div class="mini-card">
+      <div class="icon">★</div>
+      <h3>Something Fun Today</h3>
+      <p>Write about something funny, exciting, surprising, or interesting.</p>
+    </div>
+    <div class="mini-card">
+      <div class="icon">☁</div>
+      <h3>My Big Idea</h3>
+      <p>A place for Mia to share an idea, invention, dream, or imagination story.</p>
+    </div>
+  </div>
+
+  <div class="section-title" id="art"><h2>Mia's Art Wall</h2></div>
+  <section class="card">
+    <div class="art-wall">
+      <div class="art-box">Artwork #1<br>Put a photo here</div>
+      <div class="art-box">Artwork #2<br>Put a photo here</div>
+      <div class="art-box">Artwork #3<br>Put a photo here</div>
+    </div>
+  </section>
+
+  <div class="section-title" id="pets"><h2>Nugget's Corner</h2></div>
+  <section class="card">
+    <span class="kicker">Pet News</span>
+    <h2>Nugget and the Dog Family</h2>
+    <p>This section can feature Nugget's adventures, funny pictures, and stories with Luna, Tanggol, Yuki, Arky, and the rest of the dog family.</p>
+    <div class="fake-photo">Add a favorite Nugget photo here</div>
+  </section>
+
+  <div class="section-title" id="games"><h2>Fun & Games</h2></div>
+  <section class="card quiz">
+    <span class="kicker">MiaPaper Mini Quiz</span>
+    <h2>Which magical friend would you choose?</h2>
+    <div class="quiz-options">
+      <button onclick="choose('Dog','Loyal, playful, and ready for adventures!')">Dog</button>
+      <button onclick="choose('Cat','Clever, curious, and mysterious!')">Cat</button>
+      <button onclick="choose('Panda','Cute, calm, and snack-loving!')">Panda</button>
+      <button onclick="choose('Dragon','Brave, magical, and definitely unforgettable!')">Dragon</button>
+    </div>
+    <p id="answer"></p>
+  </section>
+
+  <section class="card">
+    <span class="kicker">About</span>
+    <h2>What is MiaPaper?</h2>
+    <p>MiaPaper is Mia's creative website for stories, art, pets, games, and fun ideas. New issues can be added whenever she wants.</p>
+    <p class="small">For a public website, don't post private details such as a home address, phone number, or school information.</p>
+  </section>
+</main>
+
+<footer>
+  <strong>MiaPaper</strong><br>
+  Making ordinary days a little more special.
+</footer>
+
+<script>
+function choose(name, message){
+  document.getElementById('answer').textContent = name + " — " + message;
+}
+</script>
+</body>
+</html>
